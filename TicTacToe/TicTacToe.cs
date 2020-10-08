@@ -20,8 +20,8 @@ namespace TicTacToe
         public void UC_2()//Choose one letter X or 0
         {
             Console.WriteLine("Select X or 0");
-            char userLetter = Convert.ToChar(Console.ReadLine());
-            char compLetter = ' ';
+            char userLetter = Convert.ToChar(Console.ReadLine());//Take user Input
+            char compLetter = ' ';//For assigning the second letter after user has entered 
 
             if (userLetter == 'X')
             {
