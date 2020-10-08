@@ -8,8 +8,9 @@ namespace TicTacToe
         {
             Console.WriteLine("Welcome to TicTacToe Game");
             TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.createBoard();//Start Game
-            ticTacToe.selectCharacter();//Select Letter X or O by user
+            char[] board=ticTacToe.createBoard();//Start Game
+            char playerSelect=ticTacToe.selectCharacter();//Select Letter X or O by user
+            ticTacToe.displayBoard();
         }
     }
 }
