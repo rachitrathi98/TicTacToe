@@ -10,7 +10,11 @@ namespace TicTacToe
         private char[] boardArray = new char[10];
         char userLetter = ' ';
         char compLetter = ' ';
-        int HEADS = 1;int TAILS = 2;
+        int HEADS = 1;
+        int USER=1;
+        int COMPUTER = 2;
+        int turn;
+        string winningPlayer;
         public char[] createBoard()//Create Game by initialising char array 
         {
 
@@ -22,7 +26,7 @@ namespace TicTacToe
             return boardArray;
         }
         public char selectCharacter()//Choose one letter X or O
-        {
+        { 
             Console.WriteLine("Select X or O");
             userLetter = Convert.ToChar(Console.ReadLine());//Take user Input
             compLetter = ' ';//For assigning the second letter after user has entered 
@@ -30,14 +34,17 @@ namespace TicTacToe
             if (userLetter == 'X')
             {
                 compLetter = 'O';
+                Console.WriteLine("\nYou are " + userLetter + "\nComputer is " + compLetter);
             }
             else if (userLetter == 'O')
             {
                 compLetter = 'X';
+                Console.WriteLine("\nYou are " + userLetter + "\nComputer is " + compLetter);
             }
             else
             {
-                Console.WriteLine("Select Properly");
+                Console.WriteLine("Select between X and O");
+                selectCharacter();
             }
             return compLetter;
         }
@@ -53,38 +60,164 @@ namespace TicTacToe
             Console.WriteLine("  {0}  |  {1}  |  {2}", boardArray[7], boardArray[8], boardArray[9]);
             Console.WriteLine("     |     |      ");
         }
-        public void makeMove()
-        {
-            Console.WriteLine("Enter the position to mark "+ userLetter);
-            int markPosition = Convert.ToInt32(Console.ReadLine());
-            if (markPosition < 0 || markPosition > 10)
+        public void makeMove(int player)
+        {      
+            if (player == USER)
             {
-                Console.WriteLine("Enter a Valid Position");
-                makeMove();
+                while (true)
+                {
+                    Console.WriteLine("Enter the position to mark " + userLetter);
+                    int markPosition = Convert.ToInt32(Console.ReadLine());
+                    if (markPosition < 0 || markPosition > 10)
+                    {
+                        Console.WriteLine("Enter a Valid Position");
+                    }   
+                    else
+                    {
+                        if (!boardArray[markPosition].Equals(' '))
+                        {
+                            Console.WriteLine("The position is occupied enter another position");
+                        }
+                        else
+                        {
+                            boardArray[markPosition] = userLetter;
+                            displayBoard();
+                            break;
+                        }
+                        
+                    }
+                }
             }
             else
             {
-                if (!boardArray[markPosition].Equals(' '))
-                    makeMove();
-                else
-                    boardArray[markPosition] = userLetter;
-                displayBoard();
+                while (true) 
+                {
+                    Random random = new Random();
+                    int markPosition = random.Next(1, 10);
+                    Console.WriteLine("The markposition is "+markPosition);
+                    if (markPosition < 0 || markPosition > 10)
+                    {
+                        Console.WriteLine("Enter a Valid Position");
+                    }
+                    else
+                    {
+                        if (!boardArray[markPosition].Equals(' '))
+                            Console.WriteLine("This position is occupied enter another position");
+                         else
+                                {
+                                    boardArray[markPosition] = compLetter;
+                                    displayBoard();
+                                    break;                               
+                                }
+                    }
+                }
+
             }
-            
+                   
         }
-        public void Toss()
+        public int tossToPlay()
         {
             Random rand = new Random();
             int outcome = rand.Next(0, 2);
+           
 
             if (outcome == HEADS)
             {
+                Console.WriteLine("User to Play First");
+                turn = USER; 
+            }
+            else 
+            {
                 Console.WriteLine("Computer to Play First");
+                turn = COMPUTER;
+
+            }
+            return turn;
+        }
+
+        public bool gameOutcome()
+        {
+           
+            char check;
+            bool winnerDec = false;
+            for (int i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                {
+                    check = 'X';
+                }
+                else
+                {
+                    check = '0';
+                }
+
+                if ((boardArray[1] == check && boardArray[2] == check && boardArray[3] == check) ||
+                    (boardArray[4] == check && boardArray[5] == check && boardArray[6] == check) ||
+                    (boardArray[7] == check && boardArray[8] == check && boardArray[9] == check) ||
+                    (boardArray[1] == check && boardArray[4] == check && boardArray[7] == check) ||
+                    (boardArray[2] == check && boardArray[5] == check && boardArray[8] == check) ||
+                    (boardArray[3] == check && boardArray[6] == check && boardArray[9] == check) ||
+                    (boardArray[1] == check && boardArray[5] == check && boardArray[9] == check) ||
+                    (boardArray[3] == check && boardArray[5] == check && boardArray[7] == check))
+                {
+                
+                    winnerDec = true;
+                    if (check == userLetter)
+                    {
+                        winningPlayer = "USER";
+                    }
+                    else
+                    {
+                        winningPlayer = "COMPUTER";   
+                    }
+                    Console.WriteLine("The winner of the game is "+winningPlayer);
+                    break;
+                }
+
+            }
+
+            return winnerDec;
+
+        }
+        public bool checkDraw()
+        {
+            bool Draw = false;
+            if (gameOutcome())
+            {
+                return Draw;
             }
             else
             {
-                Console.WriteLine("User to Play First");
+                for (int position = 1; position < boardArray.Length; position++)
+                {
+                    if (checkPositionAval(position))
+                    {
+                        Draw = false;
+                        break;
+                    }
+                    else
+                    {
+                        Draw = true;
+                    }
+                }
+                if (Draw)
+                {
+                    Console.WriteLine("Game Drawn");
+                }
+                return Draw;
             }
         }
+        public bool checkPositionAval(int position)
+        {
+            if (boardArray[position].Equals("X") || boardArray[position].Equals("0"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
     }
 }
