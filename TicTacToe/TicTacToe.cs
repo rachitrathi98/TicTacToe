@@ -33,7 +33,7 @@ namespace TicTacToe
             }
             else
             {
-                Console.WriteLine("Please select correctly");
+                Console.WriteLine("Select Properly");
                
             }
         }
