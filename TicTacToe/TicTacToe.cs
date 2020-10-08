@@ -17,6 +17,26 @@ namespace TicTacToe
             }
 
         }
-        
+        public void UC_2()//Choose one letter X or 0
+        {
+            Console.WriteLine("Select X or 0");
+            char userLetter = Convert.ToChar(Console.ReadLine());
+            char compLetter = ' ';
+
+            if (userLetter == 'X')
+            {
+                compLetter = '0';
+            }
+            else if (userLetter == '0')
+            {
+                compLetter = 'X';
+            }
+            else
+            {
+                Console.WriteLine("Please select correctly");
+               
+            }
+        }
+
     }
 }
