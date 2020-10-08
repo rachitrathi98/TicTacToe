@@ -13,7 +13,6 @@ namespace TicTacToe
             Console.WriteLine("UC1");
             for(int position=1; position < boardArray.Length; position++)
             {
-                Console.WriteLine("Hi");
                 boardArray[position] = ' ';
             }
 
