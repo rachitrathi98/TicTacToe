@@ -52,23 +52,6 @@ namespace TicTacToe
             Console.WriteLine("  {0}  |  {1}  |  {2}", boardArray[7], boardArray[8], boardArray[9]);
             Console.WriteLine("     |     |      ");
         }
-        public void makeMove()
-        {
-            Console.WriteLine("Enter the position to mark "+ userLetter);
-            int markPosition = Convert.ToInt32(Console.ReadLine());
-            if (markPosition < 0 || markPosition > 10)
-            {
-                Console.WriteLine("Enter a Valid Position");
-                makeMove();
-            }
-            else
-            {
-                if (!boardArray[markPosition].Equals(' '))
-                    makeMove();
-                else
-                    boardArray[markPosition] = userLetter;  
-            }
-            displayBoard();
-        }
+        
     }
 }

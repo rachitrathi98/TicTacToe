@@ -11,7 +11,6 @@ namespace TicTacToe
             char[] board=ticTacToe.createBoard();//Start Game
             char playerSelect=ticTacToe.selectCharacter();//Select Letter X or O by user
             ticTacToe.displayBoard();
-            ticTacToe.makeMove();
         }
     }
 }
