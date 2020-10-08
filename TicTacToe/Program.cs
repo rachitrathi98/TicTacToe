@@ -8,7 +8,7 @@ namespace TicTacToe
         {
             Console.WriteLine("Welcome to TicTacToe Game");
             TicTacToe ticTacToe = new TicTacToe();
-            ticTacToe.UC1();
+            ticTacToe.UC_1();//Start Game
         }
     }
 }
