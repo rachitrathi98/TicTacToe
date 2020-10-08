@@ -10,6 +10,7 @@ namespace TicTacToe
         private char[] boardArray = new char[10];
         char userLetter = ' ';
         char compLetter = ' ';
+        int HEADS = 1;int TAILS = 2;
         public char[] createBoard()//Create Game by initialising char array 
         {
 
@@ -66,9 +67,24 @@ namespace TicTacToe
                 if (!boardArray[markPosition].Equals(' '))
                     makeMove();
                 else
-                    boardArray[markPosition] = userLetter;  
+                    boardArray[markPosition] = userLetter;
+                displayBoard();
             }
-            displayBoard();
+            
+        }
+        public void Toss()
+        {
+            Random rand = new Random();
+            int outcome = rand.Next(0, 2);
+
+            if (outcome == HEADS)
+            {
+                Console.WriteLine("Computer to Play First");
+            }
+            else
+            {
+                Console.WriteLine("User to Play First");
+            }
         }
     }
 }
