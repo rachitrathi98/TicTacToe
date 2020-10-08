@@ -39,29 +39,18 @@ namespace TicTacToe
                 Console.WriteLine("Select Properly");
             }
             return compLetter;
-
         }
         public void displayBoard()//Displays the Board
         { 
             Console.WriteLine("     |     |      ");
-
             Console.WriteLine("  {0}  |  {1}  |  {2}", boardArray[1], boardArray[2], boardArray[3]);
-
             Console.WriteLine("_____|_____|_____ ");
-
             Console.WriteLine("     |     |      ");
-
             Console.WriteLine("  {0}  |  {1}  |  {2}", boardArray[4], boardArray[5], boardArray[6]);
-
             Console.WriteLine("_____|_____|_____ ");
-
             Console.WriteLine("     |     |      ");
-
             Console.WriteLine("  {0}  |  {1}  |  {2}", boardArray[7], boardArray[8], boardArray[9]);
-
             Console.WriteLine("     |     |      ");
-
-
         }
     }
 }
