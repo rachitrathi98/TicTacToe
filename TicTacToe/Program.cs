@@ -12,6 +12,7 @@ namespace TicTacToe
             char playerSelect=ticTacToe.selectCharacter();//Select Letter X or O by user
             ticTacToe.displayBoard();
             ticTacToe.makeMove();
+            ticTacToe.tossToPlay();
         }
     }
 }
